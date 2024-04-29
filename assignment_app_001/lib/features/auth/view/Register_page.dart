@@ -159,7 +159,7 @@ class _SignUPState extends State<SignUP> {
         'uid': user.uid,
         'email': user.email,
         'username': usernameController.text,
-        // 'image': imageUrl,
+        'image': imageUrl,
         // Add more user information as needed
       },
     );
@@ -192,7 +192,7 @@ class _SignUPState extends State<SignUP> {
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
           // image: DecorationImage(
-          //     image: AssetImage(""),
+          //     image: AssetImage("assets/images/Untitled.png"),
           //     fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
@@ -347,65 +347,131 @@ class _SignUPState extends State<SignUP> {
                     SizedBox(
                       height: 10,
                     ),
+                    // InkWell(
+                    //   onTap: () async {
+                    //     ImagePicker imagePicker = ImagePicker();
+                    //     XFile? file = await imagePicker.pickImage(
+                    //         source: ImageSource.gallery);
+                    //     print('${file?.path}');
+                    //     if (file == null) return;
+
+                    //     // String uniqueFileName = DateTime.now().fromMillisecondsSinceEpoch.toString();
+                    //     String uniqueFileName =
+                    //         DateTime.now().millisecondsSinceEpoch.toString();
+
+                    //     Reference referenceRoot =
+                    //         FirebaseStorage.instance.ref();
+                    //     Reference referenceDirImages =
+                    //         referenceRoot.child('images');
+
+                    //     //create a reference for the image to stored
+                    //     Reference referenceImageToUpload =
+                    //         referenceDirImages.child(uniqueFileName);
+
+                    //     try {
+                    //       await referenceImageToUpload
+                    //           .putFile(File(file!.path));
+                    //       // get down. url
+                    //       imageUrl =
+                    //           await referenceImageToUpload.getDownloadURL();
+                    //     } catch (error) {
+                    //       //some error occur
+                    //         print("Error uploading image: $error");
+                    //          showErrorMessage("Error uploading image. Please try again.");
+                    //     }
+
+                    //     //store file
+                    //     referenceImageToUpload.putFile(File(file!.path));
+                    //   },
+                    //   child: Container(
+                    //     margin: EdgeInsets.only(bottom: 8),
+                    //     width: 200,
+                    //     padding: EdgeInsets.all(8.0),
+                    //     decoration: BoxDecoration(
+                    //       border: Border.all(color: Colors.black),
+                    //       borderRadius: BorderRadius.circular(15),
+                    //       color: const Color.fromARGB(255, 173, 157, 204),
+                    //     ),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //       children: [
+                    //         Image.asset(
+                    //           "assets/images/icons8-camera.png",
+                    //           height: 40,
+                    //         ),
+                    //         Text(
+                    //           'Add Image',
+                    //           style: TextStyle(
+                    //               fontSize: 20, fontWeight: FontWeight.bold),
+                    //         )
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+
+
+
                     InkWell(
-                      onTap: () async {
-                        ImagePicker imagePicker = ImagePicker();
-                        XFile? file = await imagePicker.pickImage(
-                            source: ImageSource.gallery);
-                        print('${file?.path}');
-                        if (file == null) return;
+  onTap: () async {
+    ImagePicker imagePicker = ImagePicker();
+    XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+    print('${file?.path}');
+    if (file == null) return;
 
-                        // String uniqueFileName = DateTime.now().fromMillisecondsSinceEpoch.toString();
-                        String uniqueFileName =
-                            DateTime.now().millisecondsSinceEpoch.toString();
+    // String uniqueFileName = DateTime.now().fromMillisecondsSinceEpoch.toString();
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
-                        Reference referenceRoot =
-                            FirebaseStorage.instance.ref();
-                        Reference referenceDirImages =
-                            referenceRoot.child('images');
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child('images');
 
-                        //create a reference for the image to stored
-                        Reference referenceImageToUpload =
-                            referenceDirImages.child(uniqueFileName);
+    //create a reference for the image to stored
+    Reference referenceImageToUpload = referenceDirImages.child(uniqueFileName);
 
-                        try {
-                          await referenceImageToUpload
-                              .putFile(File(file!.path));
-                          // get down. url
-                          imageUrl =
-                              await referenceImageToUpload.getDownloadURL();
-                        } catch (error) {
-                          //some error occur
-                        }
+    try {
+      await referenceImageToUpload.putFile(File(file!.path));
+      // get down. url
+      String imageUrl = await referenceImageToUpload.getDownloadURL();
+      // Set the imageUrl state here
+      setState(() {
+        this.imageUrl = imageUrl;
+      });
+    } catch (error) {
+      //some error occur
+      print("Error uploading image: $error");
+      showErrorMessage("Error uploading image. Please try again.");
+    }
 
-                        //store file
-                        referenceImageToUpload.putFile(File(file!.path));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 8),
-                        width: 200,
-                        padding: EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(15),
-                          color: const Color.fromARGB(255, 173, 157, 204),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Image.asset(
-                              "assets/images/icons8-camera.png",
-                              height: 40,
-                            ),
-                            Text(
-                              'Add Image',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+    //store file
+    referenceImageToUpload.putFile(File(file!.path));
+  },
+  child: Container(
+    margin: EdgeInsets.only(bottom: 8),
+    width: 200,
+    padding: EdgeInsets.all(8.0),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.circular(15),
+      color: const Color.fromARGB(255, 173, 157, 204),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Image.asset(
+          "assets/images/icons8-camera.png",
+          height: 40,
+        ),
+        Text(
+          'Add Image',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        )
+      ],
+    ),
+  ),
+),
+
+
+
+
                     ElevatedButton.icon(
                       onPressed: () async {
                         // if (imageUrl.isEmpty) {
@@ -413,9 +479,8 @@ class _SignUPState extends State<SignUP> {
                         //     content: Text('Please add image'),
                         //   ));
                         // } else {
-                        //   _submitForm();
+                          _submitForm();
                         // }
-                        _submitForm();
                       },
                       icon: Icon(Icons.keyboard_arrow_right_sharp),
                       label: Text("Signup"),
