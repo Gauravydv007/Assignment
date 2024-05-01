@@ -15,7 +15,7 @@ class UserManagement {
           .set({
             'email': user.email, 'uid': user.uid})
 
-          .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailPage()))
+          .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage()))
           .catchError((e) {
             print(e);
           }));
