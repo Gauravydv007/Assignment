@@ -5,6 +5,7 @@ import 'package:assignment_app_001/features/user/user_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 
 class Login extends StatefulWidget {
@@ -163,12 +164,24 @@ class _LoginState extends State<Login> {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(10.0),
             child: Container(
               height: double.infinity,
               child: SingleChildScrollView(
                 child: Column(
+
+                  
                   children: <Widget>[
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Container(
+                        height: 250,
+                        width: 250,
+                        child: Lottie.asset('assets/images/Animation - 1714594119869.json')
+                         ,),
+                    ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -177,7 +190,7 @@ class _LoginState extends State<Login> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             SizedBox(
-                              height: h * 0.35,
+                              height: h * 0.05,
                             ),
                             Text(
                               "LOGIN PAGE",

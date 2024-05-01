@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 
 class SignUP extends StatefulWidget {
   const SignUP({super.key});
@@ -202,72 +203,24 @@ class _SignUPState extends State<SignUP> {
               child: Container(
                 child: Column(
                   children: <Widget>[
-                    Form(
-                        key: _formkey,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                controller: usernameController,
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.deepPurpleAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.deepPurpleAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  hintText: 'UserName',
-                                  labelText: " UserName",
-                                  labelStyle: TextStyle(
-                                    color: Colors.black54,
-                                  ),
-                                  fillColor: Colors.grey[200],
-                                  filled: true,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              TextFormField(
-                                validator: _validateEmail,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.deepPurpleAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.deepPurpleAccent),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  hintText: 'Email',
-                                  labelText: " Email",
-                                  labelStyle: TextStyle(
-                                    color: Colors.black54,
-                                  ),
-                                  fillColor: Colors.grey[200],
-                                  filled: true,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              TextFormField(
-                                validator: validatePassword,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                controller: passwordContoller,
-                                obscureText: _obscureText,
-                                decoration: InputDecoration(
+
+
+                     Container(
+                        height: 250,
+                        width: 250,
+                        child: Lottie.asset('assets/images/Animation - 1714594176294.json')
+                         ,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                          key: _formkey,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  controller: usernameController,
+                                  decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.deepPurpleAccent),
@@ -278,33 +231,24 @@ class _SignUPState extends State<SignUP> {
                                           color: Colors.deepPurpleAccent),
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    hintText: 'Password',
-                                    labelText: "Password",
+                                    hintText: 'UserName',
+                                    labelText: " UserName",
                                     labelStyle: TextStyle(
                                       color: Colors.black54,
                                     ),
                                     fillColor: Colors.grey[200],
                                     filled: true,
-                                    suffixIconConstraints: BoxConstraints(
-                                      minHeight: 10,
-                                    ),
-                                    suffixIcon: IconButton(
-                                        onPressed: _toggle,
-                                        icon: _obscureText
-                                            ? Icon(
-                                                Icons.remove_red_eye_rounded,
-                                              )
-                                            : Icon(Icons
-                                                .remove_red_eye_outlined))),
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              TextFormField(
-                                validator: _validatePassword,
-                                controller: confirmPasswordController,
-                                obscureText: _obs,
-                                decoration: InputDecoration(
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                TextFormField(
+                                  validator: _validateEmail,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  controller: emailController,
+                                  decoration: InputDecoration(
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Colors.deepPurpleAccent),
@@ -315,35 +259,102 @@ class _SignUPState extends State<SignUP> {
                                           color: Colors.deepPurpleAccent),
                                       borderRadius: BorderRadius.circular(15),
                                     ),
-                                    hintText: ' Password',
-                                    labelText: " Re-enter Password",
+                                    hintText: 'Email',
+                                    labelText: " Email",
                                     labelStyle: TextStyle(
                                       color: Colors.black54,
                                     ),
                                     fillColor: Colors.grey[200],
                                     filled: true,
-                                    suffixIconConstraints: BoxConstraints(
-                                      minHeight: 10,
-                                    ),
-                                    suffixIcon: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            _obs = !_obs;
-                                          });
-                                        },
-                                        icon: _obs
-                                            ? Icon(
-                                                Icons.remove_red_eye_rounded,
-                                              )
-                                            : Icon(Icons
-                                                .remove_red_eye_outlined))),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                            ],
-                          ),
-                        )),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                TextFormField(
+                                  validator: validatePassword,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  controller: passwordContoller,
+                                  obscureText: _obscureText,
+                                  decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurpleAccent),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurpleAccent),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      hintText: 'Password',
+                                      labelText: "Password",
+                                      labelStyle: TextStyle(
+                                        color: Colors.black54,
+                                      ),
+                                      fillColor: Colors.grey[200],
+                                      filled: true,
+                                      suffixIconConstraints: BoxConstraints(
+                                        minHeight: 10,
+                                      ),
+                                      suffixIcon: IconButton(
+                                          onPressed: _toggle,
+                                          icon: _obscureText
+                                              ? Icon(
+                                                  Icons.remove_red_eye_rounded,
+                                                )
+                                              : Icon(Icons
+                                                  .remove_red_eye_outlined))),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                TextFormField(
+                                  validator: _validatePassword,
+                                  controller: confirmPasswordController,
+                                  obscureText: _obs,
+                                  decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurpleAccent),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.deepPurpleAccent),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      hintText: ' Password',
+                                      labelText: " Re-enter Password",
+                                      labelStyle: TextStyle(
+                                        color: Colors.black54,
+                                      ),
+                                      fillColor: Colors.grey[200],
+                                      filled: true,
+                                      suffixIconConstraints: BoxConstraints(
+                                        minHeight: 10,
+                                      ),
+                                      suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              _obs = !_obs;
+                                            });
+                                          },
+                                          icon: _obs
+                                              ? Icon(
+                                                  Icons.remove_red_eye_rounded,
+                                                )
+                                              : Icon(Icons
+                                                  .remove_red_eye_outlined))),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
                     SizedBox(
                       height: 10,
                     ),
