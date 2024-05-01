@@ -1,4 +1,4 @@
-import 'package:assignment_app_001/features/auth/view/Dashboard_page.dart';
+import 'package:assignment_app_001/features/screens/Dashboard_page.dart';
 import 'package:assignment_app_001/features/auth/view/Register_page.dart';
 import 'package:assignment_app_001/features/auth/view/forgot_password.dart';
 import 'package:assignment_app_001/features/user/user_page.dart';
