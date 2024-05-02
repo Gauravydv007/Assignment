@@ -71,7 +71,6 @@ class _TestState extends State<Test> {
                     ),
                   ),
                 ),
-          
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
@@ -116,16 +115,18 @@ class _TestState extends State<Test> {
                                         "Username",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                      Text('${username ?? 'Username not available'}',
-                                       style: GoogleFonts.ubuntu(
+                                      Text(
+                                        '${username ?? 'Username not available'}',
+                                        style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                      
+                                                color: Colors.black,
+                                                fontSize: 14)),
                                       ),
                                     ],
                                   ),
@@ -135,16 +136,14 @@ class _TestState extends State<Test> {
                           ),
                         ),
                       ),
-          
                       SizedBox(width: 10),
-          
-                        Container(
+                      Container(
                         height: H * 0.2,
                         width: W * 0.42,
                         decoration: BoxDecoration(
                           boxShadow: [
                             new BoxShadow(
-                                color:Colors.grey.shade300,
+                                color: Colors.grey.shade300,
                                 blurRadius: 20.0,
                                 offset: Offset(10, 7)),
                           ],
@@ -168,7 +167,8 @@ class _TestState extends State<Test> {
                                     children: [
                                       Icon(
                                         Icons.phone_android,
-                                        color: const Color.fromARGB(255, 241, 107, 98),
+                                        color: const Color.fromARGB(
+                                            255, 241, 107, 98),
                                         size: 40,
                                       ),
                                       SizedBox(
@@ -178,18 +178,19 @@ class _TestState extends State<Test> {
                                         "Mobile",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                       Text('${mobile ?? 'Mobile not available'}',
+                                      Text(
+                                        '${mobile ?? 'Mobile not available'}',
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                       
-                                       ),
-          
+                                                color: Colors.black,
+                                                fontSize: 14)),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -201,11 +202,6 @@ class _TestState extends State<Test> {
                     ],
                   ),
                 ),
-          
-          
-          
-          
-          
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
@@ -216,7 +212,7 @@ class _TestState extends State<Test> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             new BoxShadow(
-                                color:Colors.grey.shade300,
+                                color: Colors.grey.shade300,
                                 blurRadius: 20.0,
                                 offset: Offset(10, 7)),
                           ],
@@ -250,16 +246,18 @@ class _TestState extends State<Test> {
                                         "Address",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                      Text('Address: ${address ?? 'Address not available'}',
-                                       style: GoogleFonts.ubuntu(
+                                      Text(
+                                        'Address: ${address ?? 'Address not available'}',
+                                        style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                      
+                                                color: Colors.black,
+                                                fontSize: 14)),
                                       ),
                                     ],
                                   ),
@@ -269,10 +267,8 @@ class _TestState extends State<Test> {
                           ),
                         ),
                       ),
-          
                       SizedBox(width: 10),
-          
-                        Container(
+                      Container(
                         height: H * 0.2,
                         width: W * 0.42,
                         decoration: BoxDecoration(
@@ -302,7 +298,8 @@ class _TestState extends State<Test> {
                                     children: [
                                       Icon(
                                         Icons.numbers,
-                                        color: const Color.fromARGB(255, 241, 107, 98),
+                                        color: const Color.fromARGB(
+                                            255, 241, 107, 98),
                                         size: 40,
                                       ),
                                       SizedBox(
@@ -312,18 +309,19 @@ class _TestState extends State<Test> {
                                         "Pincode",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                       Text('Pincode: ${pincode ?? 'Pincode not available'}',
+                                      Text(
+                                        'Pincode: ${pincode ?? 'Pincode not available'}',
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                       
-                                       ),
-          
+                                                color: Colors.black,
+                                                fontSize: 14)),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -335,14 +333,6 @@ class _TestState extends State<Test> {
                     ],
                   ),
                 ),
-          
-          
-          
-          
-          
-          
-          
-          
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
@@ -387,16 +377,18 @@ class _TestState extends State<Test> {
                                         "Product-1",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                      Text('Quantity: ${product1Quantity ?? 'Quantity not available'}',
-                                       style: GoogleFonts.ubuntu(
+                                      Text(
+                                        'Quantity: ${product1Quantity ?? 'Quantity not available'}',
+                                        style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                      
+                                                color: Colors.black,
+                                                fontSize: 14)),
                                       ),
                                     ],
                                   ),
@@ -406,16 +398,14 @@ class _TestState extends State<Test> {
                           ),
                         ),
                       ),
-          
                       SizedBox(width: 10),
-          
-                        Container(
+                      Container(
                         height: H * 0.2,
                         width: W * 0.42,
                         decoration: BoxDecoration(
                           boxShadow: [
                             new BoxShadow(
-                                color:Colors.grey.shade300,
+                                color: Colors.grey.shade300,
                                 blurRadius: 20.0,
                                 offset: Offset(10, 7)),
                           ],
@@ -439,7 +429,8 @@ class _TestState extends State<Test> {
                                     children: [
                                       Icon(
                                         Icons.card_giftcard,
-                                        color: const Color.fromARGB(255, 241, 107, 98),
+                                        color: const Color.fromARGB(
+                                            255, 241, 107, 98),
                                         size: 40,
                                       ),
                                       SizedBox(
@@ -449,18 +440,19 @@ class _TestState extends State<Test> {
                                         "Product-2",
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 16)),
+                                                color: Colors.black,
+                                                fontSize: 16)),
                                       ),
                                       SizedBox(
                                         height: H * 0.005,
                                       ),
-                                       Text('Quantity: ${product2Quantity ?? 'Quantity not available'}',
+                                      Text(
+                                        'Quantity: ${product2Quantity ?? 'Quantity not available'}',
                                         style: GoogleFonts.ubuntu(
                                             textStyle: TextStyle(
-                                                color: Colors.black, fontSize: 14)),
-                                       
-                                       ),
-          
+                                                color: Colors.black,
+                                                fontSize: 14)),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -472,114 +464,54 @@ class _TestState extends State<Test> {
                     ],
                   ),
                 ),
-          
-                // Text('Mobile: ${mobile ?? 'Mobile not available'}'),
-                // Text('Address: ${address ?? 'Address not available'}'),
-                // Text('Pincode: ${pincode ?? 'Pincode not available'}'),
-                // Text(
-                //     'Product 1 Quantity: ${product1Quantity ?? 'Quantity not available'}'),
-                // Text(
-                //     'Product 2 Quantity: ${product2Quantity ?? 'Quantity not available'}'),
-                // ElevatedButton(
-                //   onPressed: () async {
-                //     await _deleteSharedPreferencesData();
-                //     // Other actions you want to perform after deleting SharedPreferences data
-                //   },
-                //   child: const Text('Delete SharedPreferences Data'),
-                // ),
-                // ElevatedButton(
-                //   onPressed: 
-                //   () async {
-                //     final DatabaseReference =
-                //         FirebaseDatabase.instance.reference();
-                //     final id = DateTime.now().microsecond.toString();
-          
-                //     DatabaseReference.child(id).set({
-                //       'name': username ?? 'Username not available',
-                //       'mobile': mobile ?? 'Mobile not available',
-                //       'address': address ?? 'Address not available',
-                //       'pincode': pincode ?? 'Pincode not available',
-                //       'id': id,
-                //       'product1Quantity':
-                //           product1Quantity ?? 'Quantity not available',
-                //       'product2Quantity':
-                //           product2Quantity ?? 'Quantity not available',
-                //     }).then((_) {
-                //       Navigator.pushAndRemoveUntil(
-                //         context,
-                //         MaterialPageRoute(builder: (context) => Homepage()),
-                //         (Route<dynamic> route) => false,
-                //       );
-                //     }).catchError((error) {
-                //       print("Failed to add user: $error");
-                //     });
-          
-                //     await _deleteSharedPreferencesData();
-                //   },
-                //   child: const Text('Next'),
-                // ),
-          
-                SizedBox(height: 25,),
-          
-          
-          
+                SizedBox(
+                  height: 25,
+                ),
                 Center(
                   child: InkWell(
-                    onTap: 
-                    
-                      () async {
-                    final DatabaseReference =
-                        FirebaseDatabase.instance.reference();
-                    final id = DateTime.now().microsecond.toString();
-          
-                    DatabaseReference.child(id).set({
-                      'name': username ?? 'Username not available',
-                      'mobile': mobile ?? 'Mobile not available',
-                      'address': address ?? 'Address not available',
-                      'pincode': pincode ?? 'Pincode not available',
-                      'id': id,
-                      'product1Quantity':
-                          product1Quantity ?? 'Quantity not available',
-                      'product2Quantity':
-                          product2Quantity ?? 'Quantity not available',
-                    }).then((_) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Homepage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    }).catchError((error) {
-                      print("Failed to add user: $error");
-                    });
-          
-                    await _deleteSharedPreferencesData();
-                  },
-                    
+                    onTap: () async {
+                      final DatabaseReference =
+                          FirebaseDatabase.instance.reference();
+                      final id = DateTime.now().microsecond.toString();
+
+                      DatabaseReference.child(id).set({
+                        'name': username ?? 'Username not available',
+                        'mobile': mobile ?? 'Mobile not available',
+                        'address': address ?? 'Address not available',
+                        'pincode': pincode ?? 'Pincode not available',
+                        'id': id,
+                        'product1Quantity':
+                            product1Quantity ?? 'Quantity not available',
+                        'product2Quantity':
+                            product2Quantity ?? 'Quantity not available',
+                      }).then((_) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => Homepage()),
+                          (Route<dynamic> route) => false,
+                        );
+                      }).catchError((error) {
+                        print("Failed to add user: $error");
+                      });
+
+                      await _deleteSharedPreferencesData();
+                    },
                     child: Container(
-                       height: H*0.06,
-                      width: W*0.8,
+                      height: H * 0.06,
+                      width: W * 0.8,
                       decoration: BoxDecoration(
-          
-                         boxShadow: [
+                          boxShadow: [
                             new BoxShadow(
                                 color: Color.fromARGB(255, 179, 183, 186),
                                 blurRadius: 20.0,
                                 offset: Offset(10, 10)),
                           ],
-                        color: const Color.fromARGB(255, 167, 245, 169),
-                        borderRadius: BorderRadius.circular(20)
-                  
-                  
-                      ),
-          
-                      child: Center(child: Text('SUBMIT', 
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-          
-                      ))),
-                     
-                  
+                          color: const Color.fromARGB(255, 167, 245, 169),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Center(
+                          child: Text('SUBMIT',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18))),
                     ),
                   ),
                 )

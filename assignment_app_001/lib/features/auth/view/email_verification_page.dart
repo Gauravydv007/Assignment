@@ -38,11 +38,11 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Email Successfully Verified")));
           
-// ignore: use_build_context_synchronously
+
 Navigator.pushAndRemoveUntil(
   context,
-  MaterialPageRoute(builder: (context) => Login()),  //context=It's used to determine where to perform the navigation operation.
-  (Route<dynamic> route) => false, // This predicate keeps no routes in the stack
+  MaterialPageRoute(builder: (context) => Login()),  
+  (Route<dynamic> route) => false, 
 );
 
 

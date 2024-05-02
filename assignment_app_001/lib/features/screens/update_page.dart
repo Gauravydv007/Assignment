@@ -1,6 +1,5 @@
 import 'package:assignment_app_001/features/screens/Dashboard_page.dart';
-import 'package:assignment_app_001/features/screens/second_page.dart';
-import 'package:assignment_app_001/features/screens/user_detail_page.dart';
+
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:flutter/material.dart';
 final TextEditingController usernameController = TextEditingController();
 final TextEditingController mobileController = TextEditingController();
 final TextEditingController addressController = TextEditingController();
-  final DatabaseReference = FirebaseDatabase.instance.reference();
+final DatabaseReference = FirebaseDatabase.instance.reference();
 
 void updateBottomSheet(BuildContext context, name, id, mobile, address) {
   usernameController.text = name;
@@ -66,20 +65,18 @@ void updateBottomSheet(BuildContext context, name, id, mobile, address) {
               ),
               ElevatedButton(
                   onPressed: () {
-
                     DatabaseReference.child(id).update({
                       'name': usernameController.text.toString(),
                       'mobile': mobileController.text.toString(),
                       'address': addressController.text.toString(),
                     });
 
-                    //For Dismiss the keyboard afte adding items
+
                     Navigator.pop(context);
 
-            //          Navigator.push(
-            // context,
-            // MaterialPageRoute(builder: (context) => SecondPage(userId: '', pincode: '', userName: '', address: '', orderId: '', orderTotal:int.fromEnvironment(name) )));
-
+                    //          Navigator.push(
+                    // context,
+                    // MaterialPageRoute(builder: (context) => SecondPage(userId: '', pincode: '', userName: '', address: '', orderId: '', orderTotal:int.fromEnvironment(name) )));
                   },
                   child: const Text("Update"))
             ],

@@ -44,7 +44,7 @@ class _SignUPState extends State<SignUP> {
   void _submitForm() {
     if (_formkey.currentState!.validate()) {
       if (passwordContoller.text == confirmPasswordController.text) {
-        // Passwords match, proceed with signup
+      
         signUserUp();
         // Navigator.pushReplacement(
         //   context,
@@ -53,7 +53,7 @@ class _SignUPState extends State<SignUP> {
         //   ),
         // );
       } else {
-        // if Passwords do not match, show an error message in a dialog
+
         showDialog(
           context: context,
           builder: (context) {
@@ -129,13 +129,13 @@ class _SignUPState extends State<SignUP> {
         );
 
         if (userCredential.user != null) {
-          // Add user data to Firestore after successful registration
+
 
           print('Username: ${usernameController.text}');
 
           addUserToFirestore(userCredential.user!);
 
-          // Navigate to the email verification screen
+
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -161,10 +161,10 @@ class _SignUPState extends State<SignUP> {
         'email': user.email,
         'username': usernameController.text,
         'image': imageUrl,
-        // Add more user information as needed
+      
       },
     );
-    //  _reference.add(dataToSend);
+  
   }
 
   void showErrorMessage(String message) {
@@ -192,9 +192,7 @@ class _SignUPState extends State<SignUP> {
         alignment: Alignment.bottomCenter,
         constraints: const BoxConstraints.expand(),
         decoration: const BoxDecoration(
-            // image: DecorationImage(
-            //     image: AssetImage("assets/images/Untitled.png"),
-            //     fit: BoxFit.cover),
+
             ),
         child: SingleChildScrollView(
           child: Padding(
@@ -365,7 +363,7 @@ class _SignUPState extends State<SignUP> {
                         print('${file?.path}');
                         if (file == null) return;
 
-                        // String uniqueFileName = DateTime.now().fromMillisecondsSinceEpoch.toString();
+
                         String uniqueFileName =
                             DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -374,22 +372,22 @@ class _SignUPState extends State<SignUP> {
                         Reference referenceDirImages =
                             referenceRoot.child('images');
 
-                        //create a reference for the image to stored
+
                         Reference referenceImageToUpload =
                             referenceDirImages.child(uniqueFileName);
 
                         try {
                           await referenceImageToUpload
                               .putFile(File(file!.path));
-                          // get down. url
+                        
                           String imageUrl =
                               await referenceImageToUpload.getDownloadURL();
-                          // Set the imageUrl state here
+                          
                           setState(() {
                             this.imageUrl = imageUrl;
                           });
                         } catch (error) {
-                          //some error occur
+                          
                           print("Error uploading image: $error");
                           showErrorMessage(
                               "Error uploading image. Please try again.");

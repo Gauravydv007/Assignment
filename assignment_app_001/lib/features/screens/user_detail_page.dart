@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:assignment_app_001/features/screens/Quantity_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:assignment_app_001/features/screens/submit_page.dart';
@@ -22,55 +22,12 @@ class _UserDetailPageState extends State<UserDetailPage> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController mobilenumberController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  // final TextEditingController pincodeController = TextEditingController();
   final TextEditingController pincodeController = TextEditingController();
 
+  final GlobalKey<FormState> _formKey =   GlobalKey<FormState>(); 
+   
+
   Map<String, String> productQuantities = {};
-
-  Future<void> saveOrderToFirestore(
-      String orderId, Map<String, String> productQuantities) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final userId =
-          prefs.getString('userId') ?? ''; // get this from shared prefernce
-
-      await firestore.collection('orders').doc(orderId).set({
-        'Order_id': orderId,
-        'User_id': userId,
-        'name': usernameController.text.toString(),
-        'Address': addressController.text.toString(),
-        'Pincode': pincodeController.text.toString(),
-        'Order_total': calculateOrderTotal(productQuantities),
-        'Order_details': [
-          {
-            'name': 'product1',
-            'Price': 1300,
-            'quality': int.parse(productQuantities['product1Quantity'] ?? '0'),
-            'Total':
-                1300 * int.parse(productQuantities['product1Quantity'] ?? '0'),
-          },
-          {
-            'name': 'product2',
-            'Price': 1100,
-            'quality': int.parse(productQuantities['product2Quantity'] ?? '0'),
-            'Total':
-                1100 * int.parse(productQuantities['product2Quantity'] ?? '0'),
-          },
-        ],
-      });
-    } catch (e) {
-      print('Error saving order to Firestore: $e');
-    }
-  }
-
-  int calculateOrderTotal(Map<String, String> productQuantities) {
-    final int product1Quantity =
-        int.parse(productQuantities['product1Quantity'] ?? '0');
-    final int product2Quantity =
-        int.parse(productQuantities['product2Quantity'] ?? '0');
-
-    return (1300 * product1Quantity) + (1100 * product2Quantity);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +50,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                 height: 25,
               ),
               Form(
+                key: _formKey, 
                 child: Column(
                   children: <Widget>[
                     TextFormField(
@@ -116,10 +74,17 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your name';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 25),
                     TextFormField(
                       controller: mobilenumberController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide:
@@ -131,7 +96,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                               BorderSide(color: Colors.deepPurpleAccent),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        hintText: 'mobile number',
+                        hintText: 'Mobile number',
                         labelText: "Mobile",
                         labelStyle: TextStyle(
                           color: Colors.black54,
@@ -139,6 +104,12 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your mobile number';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 25),
                     TextFormField(
@@ -162,12 +133,19 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your address';
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(
                       height: 25,
                     ),
                     TextFormField(
                       controller: pincodeController,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide:
@@ -187,82 +165,50 @@ class _UserDetailPageState extends State<UserDetailPage> {
                         fillColor: Colors.grey[200],
                         filled: true,
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your pincode';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 25),
                     ElevatedButton(
                       onPressed: () async {
-                        final Map<String, String>? quantities =
-                            await Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                          return const ProductQuantityPage();
-                        }));
+                        if (_formKey.currentState!.validate()) {
+                          final Map<String, String>? quantities =
+                              await Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                            return const ProductQuantityPage();
+                          }));
 
-                        // Update product quantities if returned from the product quantity page
-                        if (quantities != null) {
-                          setState(() async {
-                            productQuantities = quantities;
+                          // Update product quantities if returned from the product quantity page
+                          if (quantities != null) {
+                            setState(() async {
+                              productQuantities = quantities;
 
-                            final prefs = await SharedPreferences.getInstance();
-                            prefs.setString('quantity1',
-                                quantities['product1Quantity'] ?? '');
-                            prefs.setString('quantity2',
-                                quantities['product2Quantity'] ?? '');
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('quantity1',
+                                  quantities['product1Quantity'] ?? '');
+                              prefs.setString('quantity2',
+                                  quantities['product2Quantity'] ?? '');
 
-                            prefs.setString(
-                                'username', usernameController.text.toString());
-                            prefs.setString('mobile',
-                                mobilenumberController.text.toString());
-                            prefs.setString(
-                                'address', addressController.text.toString());
-                            prefs.setString(
-                                'pincode', pincodeController.text.toString());
-                          });
+                              prefs.setString('username',
+                                  usernameController.text.toString());
+                              prefs.setString('mobile',
+                                  mobilenumberController.text.toString());
+                              prefs.setString(
+                                  'address', addressController.text.toString());
+                              prefs.setString(
+                                  'pincode', pincodeController.text.toString());
+                            });
+                          }
                         }
                       },
                       child: const Text('Add Product Quantity'),
                     ),
                     const SizedBox(height: 25),
-                    // ElevatedButton(
-                    //   onPressed: () async {
-                    //     final id = DateTime.now().microsecond.toString();
-                    //     DatabaseReference.child(id).set({
-                    //       'name': usernameController.text.toString(),
-                    //       'mobile': mobilenumberController.text.toString(),
-                    //       'address': addressController.text.toString(),
-                    //       'pincode': pincodeController.text.toString(),
-                    //       'id': id,
-                    //       'product1Quantity':
-                    //           productQuantities['product1Quantity'],
-                    //       'product2Quantity':
-                    //           productQuantities['product2Quantity'],
-                    //     }).catchError((error) {
-                    //       print("Failed to add user: $error");
-                    //     });
-
-                    //     final prefs = await SharedPreferences.getInstance();
-                    //     prefs.setString(
-                    //         'username', usernameController.text.toString());
-                    //     prefs.setString(
-                    //         'mobile', mobilenumberController.text.toString());
-                    //     prefs.setString(
-                    //         'address', addressController.text.toString());
-                    //     prefs.setString(
-                    //         'pincode', pincodeController.text.toString());
-
-                    //     await saveOrderToFirestore(id, productQuantities);
-
-                    //     usernameController.clear();
-                    //     mobilenumberController.clear();
-                    //     addressController.clear();
-                    //     pincodeController.clear();
-
-                    //     // Navigator.push(
-                    //     //     context,
-                    //     //     MaterialPageRoute(
-                    //     //         builder: (context) => const Test()));
-                    //   },
-                    //   child: ,
-                    // ),
                   ],
                 ),
               )

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Hunch App',
+      title: 'Assignment App',
       home: StreamBuilder(
         stream: _auth.authStateChanges(),
         builder: (context, snapshot) {
