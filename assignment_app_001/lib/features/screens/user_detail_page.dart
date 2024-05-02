@@ -182,7 +182,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                             return const ProductQuantityPage();
                           }));
 
-                          // Update product quantities if returned from the product quantity page
+
                           if (quantities != null) {
                             setState(() async {
                               productQuantities = quantities;

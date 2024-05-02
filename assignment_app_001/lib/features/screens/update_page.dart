@@ -7,12 +7,16 @@ import 'package:flutter/material.dart';
 final TextEditingController usernameController = TextEditingController();
 final TextEditingController mobileController = TextEditingController();
 final TextEditingController addressController = TextEditingController();
+final TextEditingController pincodeController = TextEditingController();
+
 final DatabaseReference = FirebaseDatabase.instance.reference();
 
-void updateBottomSheet(BuildContext context, name, id, mobile, address) {
+void updateBottomSheet(
+    BuildContext context, name, id, mobile, address, pincode) {
   usernameController.text = name;
   mobileController.text = mobile;
   addressController.text = address;
+  pincodeController.text = pincode;
   showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: Colors.blue[100],
@@ -49,15 +53,22 @@ void updateBottomSheet(BuildContext context, name, id, mobile, address) {
                 keyboardType: TextInputType.number,
                 controller: mobileController,
                 decoration: const InputDecoration(
-                  labelText: "S.N",
-                  hintText: "eg.1",
+                  labelText: "Mobile",
+                  hintText: "mobile",
                 ),
               ),
               TextField(
                 controller: addressController,
                 decoration: const InputDecoration(
                   labelText: "Address",
-                  hintText: "eg.UK",
+                  hintText: "address",
+                ),
+              ),
+              TextField(
+                controller: pincodeController,
+                decoration: const InputDecoration(
+                  labelText: "Pincode",
+                  hintText: "pincode",
                 ),
               ),
               const SizedBox(
@@ -69,14 +80,10 @@ void updateBottomSheet(BuildContext context, name, id, mobile, address) {
                       'name': usernameController.text.toString(),
                       'mobile': mobileController.text.toString(),
                       'address': addressController.text.toString(),
+                      'pincode': pincodeController.text.toString(),
                     });
 
-
                     Navigator.pop(context);
-
-                    //          Navigator.push(
-                    // context,
-                    // MaterialPageRoute(builder: (context) => SecondPage(userId: '', pincode: '', userName: '', address: '', orderId: '', orderTotal:int.fromEnvironment(name) )));
                   },
                   child: const Text("Update"))
             ],

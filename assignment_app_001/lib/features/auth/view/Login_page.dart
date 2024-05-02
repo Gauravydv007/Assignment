@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
-
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
 
@@ -23,10 +22,8 @@ class _LoginState extends State<Login> {
 
   bool _obscureText1 = true;
 
-  
   String _password = '';
 
-  
   void _toggle() {
     setState(() {
       _obscureText1 = !_obscureText1;
@@ -60,28 +57,25 @@ class _LoginState extends State<Login> {
         });
 
     try {
-      print("remote");
+      print("hiii");
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
-
       }
 
       print("heloo");
-
 
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => Homepage(),
         ),
-        (route) => false, 
+        (route) => false,
       );
     } on FirebaseAuthException catch (e) {
       showErrorMessage(e.code);
@@ -147,14 +141,15 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.sizeOf(context).height;
+    final W = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          // image: DecorationImage(
-          //   image: AssetImage("assets/images/login.jpeg"),
-          //   fit: BoxFit.cover,
-          // ),
-        ),
+            // image: DecorationImage(
+            //   image: AssetImage("assets/images/login.jpeg"),
+            //   fit: BoxFit.cover,
+            // ),
+            ),
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -162,19 +157,16 @@ class _LoginState extends State<Login> {
               height: double.infinity,
               child: SingleChildScrollView(
                 child: Column(
-
-                  
                   children: <Widget>[
-
                     Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child: Container(
                         height: 250,
                         width: 250,
-                        child: Lottie.asset('assets/images/Animation - 1714594119869.json')
-                         ,),
+                        child: Lottie.asset(
+                            'assets/images/Animation - 1714594119869.json'),
+                      ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
@@ -203,13 +195,13 @@ class _LoginState extends State<Login> {
                               controller: emailController,
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.deepPurpleAccent),
+                                  borderSide: BorderSide(
+                                      color: Colors.deepPurpleAccent),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.deepPurpleAccent),
+                                  borderSide: BorderSide(
+                                      color: Colors.deepPurpleAccent),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 hintText: 'Email',
@@ -222,7 +214,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             const SizedBox(
-                              height: 30,
+                              height: 20,
                             ),
                             TextFormField(
                               validator: validatePassword,
@@ -255,63 +247,84 @@ class _LoginState extends State<Login> {
                                           ? Icon(
                                               Icons.remove_red_eye_rounded,
                                             )
-                                          : Icon(Icons.remove_red_eye_outlined))),
+                                          : Icon(
+                                              Icons.remove_red_eye_outlined))),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 20,
                             ),
-                            ElevatedButton.icon(
-                              onPressed:(){
+                            Container(
+                              alignment: Alignment.bottomRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return ForgotPasswordPage();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Forgot Password ?",
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            InkWell(
+                              onTap: () {
                                 if (_formkey.currentState!.validate())
                                   signUserIn();
-                                },
-                              icon: Icon(Icons.arrow_circle_right),
-                              label: Text("Login"),
+                              },
+                              child: Container(
+                                height: h * 0.06,
+                                width: W * 0.8,
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      new BoxShadow(
+                                          color: Color.fromARGB(
+                                              255, 179, 183, 186),
+                                          blurRadius: 20.0,
+                                          offset: Offset(10, 10)),
+                                    ],
+                                    color: const Color.fromARGB(
+                                        255, 167, 245, 169),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: const Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                              ),
                             ),
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             )
                           ],
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(29),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignUP(),
-                                  ));
-                            },
-                            label: Text("Signup"),
-                            icon: const Icon(
-                              Icons.arrow_back_sharp,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ForgotPasswordPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
+                      padding: EdgeInsets.all(10),
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUP(),
+                              ));
+                        },
+                        icon: const Icon(
+                          Icons.arrow_forward_ios,
+                        ),
+                        label: Text("Create Account"),
                       ),
                     ),
                     const Padding(

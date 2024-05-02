@@ -27,7 +27,7 @@ class _ProductQuantityPageState extends State<ProductQuantityPage> {
                 columns: const <DataColumn>[
                   DataColumn(
                     label: Text(
-                      'Name',
+                      'Product',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -39,7 +39,7 @@ class _ProductQuantityPageState extends State<ProductQuantityPage> {
                   ),
                   DataColumn(
                     label: Text(
-                      'Qantity',
+                      'Quantity',
                       style: TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
@@ -47,7 +47,7 @@ class _ProductQuantityPageState extends State<ProductQuantityPage> {
                 rows: <DataRow>[
                   DataRow(cells: <DataCell>[
                     DataCell(Text('Hankerchief')),
-                    DataCell(Text('1300')),
+                    DataCell(Text('130')),
                     DataCell(
                       TextField(
                         controller: product1Controller,
@@ -57,8 +57,8 @@ class _ProductQuantityPageState extends State<ProductQuantityPage> {
                     ),
                   ]),
                   DataRow(cells: <DataCell>[
-                    DataCell(Text('Apple')),
-                    DataCell(Text('1400')),
+                    DataCell(Text('Ice cream')),
+                    DataCell(Text('140')),
                     DataCell(
                       TextField(
                         controller: product2Controller,

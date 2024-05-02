@@ -153,10 +153,6 @@ class _HomepageState extends State<Homepage> {
 
                   if (name.contains(search)) {
                     return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      margin: const EdgeInsets.all(10),
                       child: ListTile(
                         title: Text(
                           snapshot.child("name").value.toString(),
@@ -165,12 +161,53 @@ class _HomepageState extends State<Homepage> {
                             fontSize: 20,
                           ),
                         ),
+
                         subtitle:
-                            Text(snapshot.child("address").value.toString()),
-                        // leading: CircleAvatar(
-                        //   backgroundColor: Colors.blue[100],
-                        //   child: Text(snapshot.child("mobile").value.toString()),
-                        // ),
+                            Text(snapshot.child("mobile").value.toString()),
+                        // Text(snapshot.child("address").value.toString()),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Center(
+                                  child: Text(
+                                    snapshot.child("name").value.toString(),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Pincode: ${snapshot.child("pincode").value.toString()}",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      "Mobile: ${snapshot.child("mobile").value.toString()}",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      "Address: ${snapshot.child("address").value.toString()}",
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Close'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+
                         trailing: PopupMenuButton(
                           icon: const Icon(Icons.more_vert),
                           itemBuilder: (context) => [
@@ -186,6 +223,7 @@ class _HomepageState extends State<Homepage> {
                                     snapshot.child("id").value.toString(),
                                     snapshot.child("mobile").value.toString(),
                                     snapshot.child("address").value.toString(),
+                                    snapshot.child("pincode").value.toString(),
                                   );
                                 },
                                 leading: const Icon(Icons.edit),

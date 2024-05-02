@@ -44,16 +44,8 @@ class _SignUPState extends State<SignUP> {
   void _submitForm() {
     if (_formkey.currentState!.validate()) {
       if (passwordContoller.text == confirmPasswordController.text) {
-      
         signUserUp();
-        // Navigator.pushReplacement(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => EmailVerificationScreen(),
-        //   ),
-        // );
       } else {
-
         showDialog(
           context: context,
           builder: (context) {
@@ -129,12 +121,9 @@ class _SignUPState extends State<SignUP> {
         );
 
         if (userCredential.user != null) {
-
-
           print('Username: ${usernameController.text}');
 
           addUserToFirestore(userCredential.user!);
-
 
           Navigator.pushReplacement(
             context,
@@ -161,10 +150,8 @@ class _SignUPState extends State<SignUP> {
         'email': user.email,
         'username': usernameController.text,
         'image': imageUrl,
-      
       },
     );
-  
   }
 
   void showErrorMessage(String message) {
@@ -191,9 +178,7 @@ class _SignUPState extends State<SignUP> {
           body: Container(
         alignment: Alignment.bottomCenter,
         constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-
-            ),
+        decoration: const BoxDecoration(),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
@@ -353,7 +338,7 @@ class _SignUPState extends State<SignUP> {
                           )),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 2,
                     ),
                     InkWell(
                       onTap: () async {
@@ -363,7 +348,6 @@ class _SignUPState extends State<SignUP> {
                         print('${file?.path}');
                         if (file == null) return;
 
-
                         String uniqueFileName =
                             DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -372,28 +356,25 @@ class _SignUPState extends State<SignUP> {
                         Reference referenceDirImages =
                             referenceRoot.child('images');
 
-
                         Reference referenceImageToUpload =
                             referenceDirImages.child(uniqueFileName);
 
                         try {
                           await referenceImageToUpload
                               .putFile(File(file!.path));
-                        
+
                           String imageUrl =
                               await referenceImageToUpload.getDownloadURL();
-                          
+
                           setState(() {
                             this.imageUrl = imageUrl;
                           });
                         } catch (error) {
-                          
                           print("Error uploading image: $error");
                           showErrorMessage(
                               "Error uploading image. Please try again.");
                         }
 
-                        //store file
                         referenceImageToUpload.putFile(File(file!.path));
                       },
                       child: Container(
@@ -423,13 +404,7 @@ class _SignUPState extends State<SignUP> {
                     ),
                     ElevatedButton.icon(
                       onPressed: () async {
-                        // if (imageUrl.isEmpty) {
-                        //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //     content: Text('Please add image'),
-                        //   ));
-                        // } else {
                         _submitForm();
-                        // }
                       },
                       icon: Icon(Icons.keyboard_arrow_right_sharp),
                       label: Text("Signup"),
