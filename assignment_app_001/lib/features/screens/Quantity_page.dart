@@ -23,17 +23,100 @@ class _ProductQuantityPageState extends State<ProductQuantityPage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            TextField(
+
+            DataTable(
+              border: TableBorder.all(width:1
+              
+              ),
+              columns: const < DataColumn>[
+                DataColumn(
+                  
+                   label: Text(
+                'Name',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+                  
+                  ),
+
+
+
+
+                    DataColumn(
+                  
+                   label: Text(
+                'Price',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+                  
+                  ),
+
+                   DataColumn(
+                  
+                   label: Text(
+                'Qantity',
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+                  
+                  ),
+
+              ],
+               rows: <DataRow>[
+                DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text('Hankerchief')),
+                    DataCell(Text('1300')),
+                    DataCell(
+                       TextField(
               controller: product1Controller,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Product 1 Quantity'),
+              decoration: InputDecoration(hintText: 'Pro..' ),
             ),
-            const SizedBox(height: 20),
-            TextField(
+
+                    ),
+
+            //           DataCell(
+            //            TextField(
+            //   controller: product2Controller,
+            //   keyboardType: TextInputType.number,
+            //   decoration: InputDecoration(labelText: 'Product 2 Quantity'),
+            // ),
+
+            //         ),
+                  ]
+                ),
+
+                DataRow(
+                  cells: <DataCell>[
+
+                     DataCell(Text('Apple')),
+                    DataCell(Text('1400')),
+                    DataCell(
+                       TextField(
               controller: product2Controller,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Product 2 Quantity'),
+              decoration: InputDecoration(hintText: 'Pro..'),
             ),
+
+                    ),
+
+                  ]
+                  )
+
+               ]
+               
+               ),
+
+            // TextField(
+            //   controller: product1Controller,
+            //   keyboardType: TextInputType.number,
+            //   decoration: InputDecoration(labelText: 'Product 1 Quantity'),
+            // ),
+            // const SizedBox(height: 20),
+            // TextField(
+            //   controller: product2Controller,
+            //   keyboardType: TextInputType.number,
+            //   decoration: InputDecoration(labelText: 'Product 2 Quantity'),
+            // ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
